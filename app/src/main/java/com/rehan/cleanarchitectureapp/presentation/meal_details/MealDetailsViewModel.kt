@@ -2,9 +2,8 @@ package com.rehan.cleanarchitectureapp.presentation.meal_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rehan.cleanarchitectureapp.constants.NetworkResult
+import com.rehan.cleanarchitectureapp.utils.NetworkResult
 import com.rehan.cleanarchitectureapp.domain.usecase.GetMealDetailsUseCase
-import com.rehan.cleanarchitectureapp.presentation.meal_search.MealSearchState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,6 +11,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+// Our viewmodels talk with usecase. So we will inject our usecase here.
 @HiltViewModel
 class MealDetailsViewModel @Inject constructor(private val getMealDetailsUseCase: GetMealDetailsUseCase): ViewModel() {
 
@@ -31,6 +31,6 @@ class MealDetailsViewModel @Inject constructor(private val getMealDetailsUseCase
                     _mealDetailsMutableStateFlow.value = MealDetailsState(data = it.data)
                 }
             }
-        }.launchIn(viewModelScope)
+        }.launchIn(viewModelScope)      // We have to tell here on which scope we will launch this viewmodel function
     }
 }

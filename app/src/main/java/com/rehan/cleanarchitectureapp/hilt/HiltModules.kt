@@ -1,9 +1,9 @@
 package com.rehan.cleanarchitectureapp.hilt
 
-import com.rehan.cleanarchitectureapp.constants.Constants
+import com.rehan.cleanarchitectureapp.utils.Constants
 import com.rehan.cleanarchitectureapp.data.api.MealAPI
-import com.rehan.cleanarchitectureapp.data.repository.GetMealDetailsRepository
-import com.rehan.cleanarchitectureapp.data.repository.GetMealSearchListRepository
+import com.rehan.cleanarchitectureapp.data.repository.GetMealDetailsImpl
+import com.rehan.cleanarchitectureapp.data.repository.GetMealSearchListImpl
 import com.rehan.cleanarchitectureapp.domain.repository.MealDetailRepository
 import com.rehan.cleanarchitectureapp.domain.repository.MealSearchRepository
 import dagger.Module
@@ -27,6 +27,7 @@ object HiltModules {
             .build()
     }
 
+    // Mention all the APIs and repositories here in Hilt that we are going to use in app.
     @Singleton
     @Provides
     fun providesMealAPI(retrofit: Retrofit): MealAPI {
@@ -35,11 +36,11 @@ object HiltModules {
 
     @Provides
     fun providesMealSearchRepository(mealAPI: MealAPI): MealSearchRepository {
-        return GetMealSearchListRepository(mealAPI)
+        return GetMealSearchListImpl(mealAPI)   // MealSearchRepository is an interface. So we cannot return anything. Interface has always impl to return. So we will return MealSearchListImpl.
     }
 
     @Provides
     fun providesMealDetailsRepository(mealAPI: MealAPI): MealDetailRepository {
-        return GetMealDetailsRepository(mealAPI)
+        return GetMealDetailsImpl(mealAPI)      // MealDetailsRepository is an interface. So we cannot return anything. Interface has always impl to return. So we will return MealDetailsListImpl.
     }
 }

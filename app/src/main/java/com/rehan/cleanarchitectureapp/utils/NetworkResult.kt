@@ -1,4 +1,4 @@
-package com.rehan.cleanarchitectureapp.constants
+package com.rehan.cleanarchitectureapp.utils
 
 sealed class NetworkResult<T>(val data: T? = null, val message: String? = null) {
 

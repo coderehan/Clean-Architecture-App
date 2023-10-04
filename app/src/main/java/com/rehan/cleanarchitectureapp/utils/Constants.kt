@@ -1,4 +1,4 @@
-package com.rehan.cleanarchitectureapp.constants
+package com.rehan.cleanarchitectureapp.utils
 
 object Constants {
 

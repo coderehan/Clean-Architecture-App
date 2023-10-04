@@ -17,7 +17,7 @@
         android:name="com.rehan.cleanarchitectureapp.presentation.meal_details.MealDetailsFragment"
         android:label="MealDetailsFragment" >
         <argument
-            android:name="meal_id"
+            android:name="mealId"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />

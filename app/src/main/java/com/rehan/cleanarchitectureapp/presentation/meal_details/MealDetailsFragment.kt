@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.fragment.findNavController
 import com.rehan.cleanarchitectureapp.databinding.FragmentMealDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,17 +45,24 @@ class MealDetailsFragment : Fragment() {
             mealDetailsViewModel.mealDetailsStateFlow.collect{
 
                 if(it.isLoading){
-
+                    binding.progressBar.visibility = View.VISIBLE
                 }
 
                 if(it.error.isNotBlank()){
                     Toast.makeText(requireContext(), it.error, Toast.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.GONE
                 }
 
                 it.data?.let {
                    binding.mealDetails = it
+                    binding.progressBar.visibility = View.GONE
                 }
             }
+        }
+
+        // Handling back button listener
+        binding.detailsBackArrow.setOnClickListener {
+            findNavController().popBackStack()
         }
 
     }

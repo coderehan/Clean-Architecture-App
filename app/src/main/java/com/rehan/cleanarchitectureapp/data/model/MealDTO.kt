@@ -3,8 +3,9 @@ package com.rehan.cleanarchitectureapp.data.model
 import com.rehan.cleanarchitectureapp.domain.model.MealDetails
 import com.rehan.cleanarchitectureapp.domain.model.MealSearch
 
-data class Meal(
-    // The reason why we add ? in all String is sometimes api may send null value and if null value comes, our app will crash. So for null safety we use ? to avoid crashing app
+data class MealDTO(
+    // The reason why we add ? in all String is sometimes api may send null value and if null value comes, our app will crash.
+    // So for null safety we use ? to avoid crashing app
     val dateModified: String?,
     val idMeal: String?,
     val strArea: String?,
@@ -60,17 +61,20 @@ data class Meal(
     val strYoutube: String?
 )
 
-// We will convert this meal model of data layer to meal model of domain layer because in domain layer we are keeping those things only we which we want to show in UI
-fun Meal.toDomainMealSearch(): MealSearch {
+// We will convert this MealDTO model class of data layer to MealSearch model class of domain layer because in domain layer we are keeping those things only we which we want to show in UI
+// Here we will be using extension function i.e. ClassName.FunctionName
+fun MealDTO.toDomainMealSearch(): MealSearch {
     return MealSearch(
         // Make sure to pass empty string as "" inorder to avoid app crashing if api send null value from server database
-        mealId = this.idMeal ?: "",
+        mealId = this.idMeal ?: "",     // mealId is the domain layer variable. So in this variable, we will map data layer variable. Thus we are mapping data from data layer to domain layer.
         mealName = this.strMeal ?: "",
         mealImage = this.strMealThumb ?: ""
     )
 }
 
-fun Meal.toDomainMealDetails(): MealDetails {
+// We will convert this MealDTO model class of data layer to MealDetails model class of domain layer because in domain layer we are keeping those things only we which we want to show in UI
+// Here we will be using extension function i.e. ClassName.FunctionName
+fun MealDTO.toDomainMealDetails(): MealDetails {
     return MealDetails(
         name = this.strMeal ?: "",
         image = this.strMealThumb ?: "",

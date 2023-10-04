@@ -29,19 +29,15 @@ class MealSearchAdapter : RecyclerView.Adapter<MealSearchAdapter.MyViewHolder>()
     }
 
     override fun onBindViewHolder(holder: MealSearchAdapter.MyViewHolder, position: Int) {
-        val mealSearch = this.list[position]
+        // We don't need to set data programmatically here because we have already used data binding in xml.
         val binding = holder.binding
-
-        binding.tvMealName.text = mealSearch.mealName
-
-
-
-        binding.ivMealImage.setOnClickListener {
+        binding.mealSearch = this.list[position]
+        binding.root.setOnClickListener{
             listener?.let {
                 it(this.list[position])
             }
         }
-    }
+     }
 
     override fun getItemCount(): Int {
         return this.list.size

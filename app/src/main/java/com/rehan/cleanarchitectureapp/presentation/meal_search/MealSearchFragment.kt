@@ -56,7 +56,8 @@ class MealSearchFragment : Fragment() {
         lifecycle.coroutineScope.launchWhenCreated {
             // Now we will collect data from stateflow
             mealSearchViewModel.mealSearchListStateFlow.collect{
-
+                // Here we are representing MealSearchState. So we don't need to use when statement.
+                // So we have 3 states i.e. isLoading, error and data
                 if(it.isLoading){
                     binding.tvNothingFound.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
@@ -77,6 +78,7 @@ class MealSearchFragment : Fragment() {
             }
         }
 
+        // Passing data from this fragment to details fragment on item click in recyclerview adapter
         mealSearchAdapter.itemClickListener {
             findNavController().navigate(
                 MealSearchFragmentDirections.actionMealSearchFragmentToMealDetailsFragment(
