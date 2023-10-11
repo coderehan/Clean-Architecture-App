@@ -27,7 +27,7 @@ object HiltModules {
             .build()
     }
 
-    // Mention all the APIs and repositories here in Hilt that we are going to use in app.
+    // Mention all the API interfaces of data layer and repositories of domain layer here in Hilt that we are going to use in this app.
     @Singleton
     @Provides
     fun providesMealAPI(retrofit: Retrofit): MealAPI {

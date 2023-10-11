@@ -21,6 +21,8 @@ class MealDetailsFragment : Fragment() {
         get() = _binding!!
 
     private val mealDetailsViewModel: MealDetailsViewModel by viewModels()
+
+    // navArgs is used when we receive something from source fragment. Here we are getting mealId from source fragment.
     private val args: MealDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -37,7 +39,7 @@ class MealDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         args.mealId?.let{
-            mealDetailsViewModel.getMealDetails(it)
+            mealDetailsViewModel.getMealDetails(it)     // Here we will pass mealId
         }
 
         lifecycle.coroutineScope.launchWhenCreated {
