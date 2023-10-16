@@ -2,10 +2,10 @@ package com.rehan.cleanarchitectureapp.utils
 
 sealed class NetworkResult<T>(val data: T? = null, val message: String? = null) {
 
-    class Success<T>(data: T) : NetworkResult<T>(data)
+    class Loading<T> : NetworkResult<T>()
 
-    class Error<T>(message: String, data: T? = null) : NetworkResult<T>(data, message)
+    class Success<T>(data: T?) : NetworkResult<T>(data = data)
 
-    class Loading<T>(data: T? = null) : NetworkResult<T>(data)
+    class Error<T>(message: String?) : NetworkResult<T>(message = message)
 
 }
